@@ -14,7 +14,7 @@ export const answerQuery = async (query, clientName) => {
         const res = await embeddings.embedQuery(query);
         const result = (await customStore.similaritySearchVectorWithScore(res, 3, clientName)).flat();
         // result = result.flat();
-        const llm = new OpenAI();
+        const llm = new OpenAI({ modelName: "gpt-3.5-turbo" });
         const chainA = loadQAStuffChain(llm);
         // const chainB = loadQAMapReduceChain(llm);
         // const chainC = loadQARefineChain(llm);
